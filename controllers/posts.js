@@ -7,13 +7,14 @@ module.exports = {
     db.User.findOne({ username: req.body.username })
       .exec()
       .then(user => {
+        let date = new Date();
         let newPost = new Post({
           user: user,
-          city: city,
           title: req.body.title,
           picture: req.body.picture,
           body: req.body.body,
-          comments: []
+          comments: [],
+          date: date
         });
         newPost
           .save(function(err, post) {

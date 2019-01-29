@@ -9,8 +9,8 @@ mongoose
 
 const StolenCar = require("./StolenCar");
 const User = require("./User");
-const Comments = require("./Comments");
+const Comment = require("./Comment");
 const Post = require("./Post");
 const UserVehicle = require("./UserVehicle");
 
-module.exports = { User, Comments, Post, UserVehicle };
+module.exports = { User, Comment, Post, UserVehicle, StolenCar };
