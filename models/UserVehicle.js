@@ -15,7 +15,13 @@ const UserVehicleSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User"
-  }
+  },
+  lastSeenDate: Date,
+  lastSeenCity: String,
+  lastSeenState: String,
+  lastSeenZip: String,
+  postPublicly: Boolean,
+  dateCreated: Date
 });
 
 const UserVehicle = mongoose.model("UserVehicle", UserVehicleSchema);

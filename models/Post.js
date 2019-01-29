@@ -9,7 +9,6 @@ const PostsSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  location: String,
   comments: [
     {
       type: Schema.Types.ObjectId,

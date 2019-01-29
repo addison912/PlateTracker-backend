@@ -9,7 +9,11 @@ const StolenCarSchema = new Schema({
   color: String,
   licenseState: String,
   licensePlate: String,
-  vin: String
+  vin: String,
+  lastSeenDate: Date,
+  lastSeenCity: String,
+  lastSeenState: String,
+  lastSeenZip: String
 });
 
 const StolenCar = mongoose.model("StolenCar", StolenCarSchema);
