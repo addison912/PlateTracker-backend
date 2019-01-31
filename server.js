@@ -2,8 +2,8 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   passport = require("./config/passport")(),
   jwt = require("jsonwebtoken"),
-  cors = require("cors");
-routes = require("./routes");
+  cors = require("cors"),
+  routes = require("./routes");
 
 // creating express app
 const app = express();

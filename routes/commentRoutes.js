@@ -4,5 +4,5 @@ const express = require("express"),
 
 module.exports = router;
 // .get("/:id", commentController.bypostid)
-// .post("/", commentController.post)
+// .post("/", commentController.create)
 // .put("/:id", commentController.edit);
