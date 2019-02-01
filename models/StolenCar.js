@@ -11,8 +11,6 @@ const StolenCarSchema = new Schema({
   licensePlate: String,
   vin: String,
   lastSeenDate: Date,
-  lastSeenCity: String,
-  lastSeenState: String,
   lastSeenZip: String
 });
 

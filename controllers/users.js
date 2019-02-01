@@ -1,4 +1,4 @@
-const jwt = require("jwt-simple");
+const jwt = require("jsonwebtoken");
 const passport = require("../config/passport");
 const config = require("../config/config");
 const db = require("../models");
@@ -29,7 +29,7 @@ module.exports = {
               User.create(newUser).then(user => {
                 if (user) {
                   let payload = { id: user.id };
-                  let token = jwt.encode(payload, config.jwtSecret);
+                  let token = jwt.sign(payload, config.jwtSecret);
                   res.json({ token });
                 } else {
                   res.sendStatus(401).json({ err: "create user error" });
@@ -47,13 +47,29 @@ module.exports = {
   },
   login: (req, res) => {
     if (req.body.username && req.body.password) {
+      console.log(req.body.username);
       User.findOne({ username: req.body.username }).then(user => {
         if (user) {
           bcrypt.compare(req.body.password, user.password, (err, match) => {
             if (match) {
-              let payload = { id: user.id };
-              let token = jwt.encode(payload, config.jwtSecret);
-              res.json({ token });
+              const JWTToken = jwt.sign(
+                {
+                  username: user.username,
+                  _id: user._id
+                },
+                "secret",
+                {
+                  expiresIn: "2h"
+                }
+              );
+              return res.status(200).json({
+                success: `${user.username} logged in successfully!`,
+                jwt: JWTToken,
+                user: {
+                  username: user.username,
+                  _id: user._id
+                }
+              });
             } else {
               res
                 .sendStatus(401)
@@ -61,7 +77,7 @@ module.exports = {
             }
           });
         } else {
-          res.sendStatus(401).json({ error: "No user found" });
+          res.sendStatus(404).json({ error: "User not found" });
         }
       });
     } else {
