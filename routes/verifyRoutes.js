@@ -1,20 +1,14 @@
-const 
-  express = require('express'),
+const express = require("express"),
   router = express.Router(),
-  verifyController = require('../controllers/verify.js')
+  verifyController = require("../controllers/verify.js");
 
-module.exports = router
-  .post('/', verifyToken, verifyController.verify)
-
+module.exports = router.use("/", verifyToken, verifyController.verify);
 
 function verifyToken(req, res, next) {
   console.log("in verify...");
-  const bearerHeader = req.headers['authorization'];
-  console.log(bearerHeader)
-  if(typeof bearerHeader !== 'undefined'){
-    const bearer = bearerHeader.split(' ');
-    const bearerToken = bearer[1];
-    req.token = bearerToken;
+  const bearerHeader = req.headers["authorization"];
+  if (typeof bearerHeader !== "undefined") {
+    res.locals.token = bearerHeader;
     next();
   } else {
     res.sendStatus(403);

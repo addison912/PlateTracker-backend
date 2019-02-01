@@ -1,12 +1,15 @@
-const 
-config = require('../config/config'),
-jwt = require('jsonwebtoken')
+const config = require("../config/config"),
+  jwt = require("jsonwebtoken");
 
 module.exports = {
   verify: (req, res) => {
-    console.log(config.jwtSecret)
-    let verified= jwt.verify(req.token, config.jwtSecret)
-    console.log("verified: ", verified)
-    res.json(verified)
+    jwt.verify(res.locals.token, config.jwtSecret, function(err, verify) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("verified: ", verify);
+        return res.json(verify);
+      }
+    });
   }
-}
+};

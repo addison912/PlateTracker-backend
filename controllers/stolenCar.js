@@ -10,10 +10,11 @@ module.exports = {
     db.StolenCar.findOne(
       { licensePlate: req.params.licensePlate },
       (err, foundPlate) => {
-        if (err) {
-          return console.log(err);
+        if (!foundPlate) {
+          res.json("Vehicle not stolen");
+        } else {
+          res.json(foundPlate);
         }
-        res.json(foundPlate);
       }
     );
   }

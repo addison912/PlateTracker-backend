@@ -46,8 +46,10 @@ module.exports = {
     }
   },
   login: (req, res) => {
+    const secret = require("../config/config");
+
+    console.log(req.body);
     if (req.body.username && req.body.password) {
-      console.log(req.body.username);
       User.findOne({ username: req.body.username }).then(user => {
         if (user) {
           bcrypt.compare(req.body.password, user.password, (err, match) => {
@@ -57,7 +59,7 @@ module.exports = {
                   username: user.username,
                   _id: user._id
                 },
-                "secret",
+                secret.jwtSecret,
                 {
                   expiresIn: "2h"
                 }
@@ -72,7 +74,7 @@ module.exports = {
               });
             } else {
               res
-                .sendStatus(401)
+                .sendStatus(420)
                 .json({ error: "username/password incorrect" });
             }
           });
