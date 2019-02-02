@@ -4,6 +4,7 @@
   "description": "This is the backend of the PlateTracker Application",
   "main": "server.js",
   "scripts": {
+    "format": "prettier --write \"./seed.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,5 +19,8 @@
     "mongoose": "^5.4.7",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.16.3"
   }
 }
