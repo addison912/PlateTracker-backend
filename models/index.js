@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 
 mongoose
-  .connect("mongodb://localhost/PlateTracker-backend")
+  .connect(
+    process.env.MONGODB_URI || "mongodb://localhost/PlateTracker-backend"
+  )
   .then(connection => console.log("Connection established!"))
   .catch(err => console.log("Connection failed!", err));
 
