@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(passport.initialize());
 app.use(express.static("public"));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //routes
