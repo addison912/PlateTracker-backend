@@ -3,6 +3,6 @@ const express = require("express"),
   userController = require("../controllers/users.js");
 
 module.exports = router
-  .get("/", userController.index)
+  // .get("/", userController.index)
   .post("/signup", userController.signup)
   .post("/login", userController.login);
