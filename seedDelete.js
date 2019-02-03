@@ -1,3 +1,5 @@
+const db = require("./models");
+
 simpleDelete(db.User, "users");
 simpleDelete(db.Post, "posts");
 
