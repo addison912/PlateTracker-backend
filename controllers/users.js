@@ -74,7 +74,7 @@ module.exports = {
               });
             } else {
               res
-                .sendStatus(420)
+                .sendStatus(404)
                 .json({ error: "username/password incorrect" });
             }
           });
