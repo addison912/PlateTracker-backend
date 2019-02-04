@@ -80,4 +80,6 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-uploads/
+uploads/postPics/*
+uploads/profilePics/*
+uploads/vehiclePics/*
