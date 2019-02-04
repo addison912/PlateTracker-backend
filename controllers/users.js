@@ -61,9 +61,18 @@ module.exports = {
             if (!user) {
               User.create(newUser).then(user => {
                 if (user) {
-                  let payload = { id: user.id };
-                  let token = jwt.sign(payload, config.jwtSecret);
-                  res.json({ token });
+                  let payload = { username: user.username, _id: user._id };
+                  let token = jwt.sign(payload, config.jwtSecret, {
+                    expiresIn: "2h"
+                  });
+                  res.json({
+                    success: `${user.username} logged in successfully!`,
+                    jwt: token,
+                    user: {
+                      username: user.username,
+                      _id: user._id
+                    }
+                  });
                 } else {
                   res.sendStatus(401).json({ err: "create user error" });
                 }
