@@ -44,7 +44,7 @@ module.exports = {
           return console.log("create error: " + err);
         }
         console.log("created a new post,", post.title);
-        res.status(200).json("new post created");
+        res.status(200).json(post);
       });
     });
   },
