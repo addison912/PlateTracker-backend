@@ -5,4 +5,5 @@ const express = require("express"),
 module.exports = router
   // .get("/", userController.index)
   .post("/signup", userController.signup)
-  .post("/login", userController.login);
+  .post("/login", userController.login)
+  .get("/profile/:userId", userController.profile);

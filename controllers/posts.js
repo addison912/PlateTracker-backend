@@ -17,7 +17,7 @@ module.exports = {
       } else if (/^data:image\/gif;base64,/.test(req.body.picture)) {
         base64Data = req.body.picture.replace(/^data:image\/gif;base64,/, "");
         fileName = `postPic_${date}.gif`;
-      } else return console.log("invalid image type");
+      } else console.log("invalid image type");
       fs.writeFile(
         `${__dirname}/../uploads/postPics/${fileName}`,
         base64Data,
@@ -50,6 +50,15 @@ module.exports = {
   },
   index: (req, res) => {
     Post.find({}, (err, posts) => {
+      if (err) {
+        res.status(404).json("unable to get posts");
+        return console.log(err);
+      }
+      res.status(200).json(posts);
+    });
+  },
+  byUser: (req, res) => {
+    Post.find({ user: req.params.userId }, (err, posts) => {
       if (err) {
         res.status(404).json("unable to get posts");
         return console.log(err);
