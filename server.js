@@ -23,6 +23,9 @@ app.use("/post", routes.post);
 app.use("/comment", routes.comment);
 app.use("/user-vehicles", routes.userVehicle);
 app.use("/stolen-vehicles", routes.stolenCar);
+app.get("/", function(req, res) {
+  res.json({ message: "Plate Tracker is Live!" });
+});
 
 // server connection
 const port = process.env.PORT || 3001;
