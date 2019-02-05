@@ -24,7 +24,7 @@ app.use("/comment", routes.comment);
 app.use("/user-vehicles", routes.userVehicle);
 app.use("/stolen-vehicles", routes.stolenCar);
 app.get("/", function(req, res) {
-  res.json({ message: "Plate Tracker is Live!" });
+  res.json({ message: "Plate Tracker Server is Live!" });
 });
 
 // server connection
